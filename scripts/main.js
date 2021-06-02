@@ -42,6 +42,9 @@ function computerPlay(){
             return "scissors" ;
     }
 }
-const playerSelection = "rock";
+const playerSelection = prompt("Choose Scissors,rock or paper!");
+
+
+
 const computerSelection = computerPlay();
 console.log(playRound(playerSelection,computerSelection));
