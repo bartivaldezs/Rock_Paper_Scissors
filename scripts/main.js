@@ -1,5 +1,5 @@
 function playRound(playerSelection,computerSelection){
-    playerSelectionCopy= playerSelection.toLowerCase();
+    let playerSelectionCopy= playerSelection.toLowerCase();
     switch(computerSelection){
         case "paper":
             switch(playerSelectionCopy){
@@ -30,7 +30,7 @@ function playRound(playerSelection,computerSelection){
     }
 }
 function computerPlay(){
-    numberChoice=Math.floor(Math.random()*3);
+    let numberChoice=Math.floor(Math.random()*3);
     switch(numberChoice){
         case 0:
             return "rock";
@@ -46,29 +46,18 @@ function computerPlay(){
 
 
 function userSelection(e){
-    humanChoice=e.target.id; 
-    const computerScore= document.querySelector("#computerScore");
-    const humanScore=document.querySelector("#humanScore");
-    computerChoice=computerPlay();
-    matchResult= playRound(humanChoice,computerChoice);
+    let humanChoice=e.target.id; 
+    let computerChoice=computerPlay();
+    let matchResult= playRound(humanChoice,computerChoice);
 
     updateLastChoice('#computerLast .lastChoice',computerChoice);
     
     updateLastChoice('#humanLast .lastChoice',humanChoice);
     
+    scoreKeeping(matchResult);
     
 
-    switch(matchResult){
-        case "won":
-            humanScore.textContent=Number(humanScore.textContent)+1;
-            return;
-        case "lose":
-            computerScore.textContent=Number(computerScore.textContent)+1;
-            return;
-        case "tie":
-            return;
-    }
-
+    
 }
 
 function updateLastChoice(selector,choice){
@@ -84,6 +73,33 @@ function updateLastChoice(selector,choice){
         case "scissors":
             LastChoice.src="images/scissors.png";
             break;
+    }
+}
+function scoreKeeping(matchResult){
+    const computerScore= document.querySelector("#computerScore");
+    const humanScore=document.querySelector("#humanScore");
+    let acualComputerScore,actualHumanScore; 
+    switch(matchResult){
+        case "won":
+            humanScore.textContent=Number(humanScore.textContent)+1;
+            break;
+        case "lose":
+            computerScore.textContent=Number(computerScore.textContent)+1;
+            break;
+        case "tie":
+            break;
+    }
+    acualComputerScore=Number(computerScore.textContent);
+    actualHumanScore=Number(humanScore.textContent);
+    if( acualComputerScore + actualHumanScore > 5){
+        if(acualComputerScore > actualHumanScore){
+            window.alert("you won");
+        }
+        else{
+            window.alert("you lose")
+        }
+        humanScore.textContent=0;
+        computerScore.textContent=0;
     }
 }
 
