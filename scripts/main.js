@@ -49,7 +49,15 @@ function userSelection(e){
     humanChoice=e.target.id; 
     const computerScore= document.querySelector("#computerScore");
     const humanScore=document.querySelector("#humanScore");
-    matchResult= playRound(humanChoice,computerPlay())
+    computerChoice=computerPlay();
+    matchResult= playRound(humanChoice,computerChoice);
+
+    updateLastChoice('#computerLast .lastChoice',computerChoice);
+    
+    updateLastChoice('#humanLast .lastChoice',humanChoice);
+    
+    
+
     switch(matchResult){
         case "won":
             humanScore.textContent=Number(humanScore.textContent)+1;
@@ -63,7 +71,21 @@ function userSelection(e){
 
 }
 
-
+function updateLastChoice(selector,choice){
+    const LastChoice=document.querySelector(selector)
+    
+    switch(choice){
+        case "rock":
+            LastChoice.src="images/rock.png";
+            break;
+        case "paper":
+            LastChoice.src="images/paper.png";
+            break;
+        case "scissors":
+            LastChoice.src="images/scissors.png";
+            break;
+    }
+}
 
 const buttons=document.querySelectorAll('.button');
 buttons.forEach(button => button.addEventListener('click', userSelection));
