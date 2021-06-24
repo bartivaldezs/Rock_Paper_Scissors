@@ -20,7 +20,6 @@ body{
 .button{
     height: 100%;
     width: auto;
-    
 }
 
 #scoresContainer{
@@ -42,7 +41,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
 }
 #computerLast{
     position: fixed;
@@ -52,11 +50,9 @@ body{
     width: 30%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    
+    justify-content: space-around; 
 }
-.lastChoice{
-    
+.lastChoice{  
     width: 30%;
     height: auto;
 }
