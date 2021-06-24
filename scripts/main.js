@@ -1,31 +1,31 @@
-function playRound(playerSelection,computerSalection){
+function playRound(playerSelection,computerSelection){
     playerSelectionCopy= playerSelection.toLowerCase();
     switch(computerSelection){
         case "paper":
             switch(playerSelectionCopy){
                 case "rock":
-                    return "Paper beats rock! You Lose";
+                    return "lose";
                 case "paper":
-                    return "Both selected the same, play again.";
+                    return "tie";
                 case "scissors":
-                    return "Scissors beats paper! You won!";
+                    return "won";
             }
         case "rock":
             switch(playerSelectionCopy){
                 case "rock":
-                    return "Both selected the same, play again.";
+                    return "tie";
                 case "paper":
-                    return "Paper beats rock. You won!";
+                    return "won";
                 case "scissors":
-                    return "Rock beats Scissors! You Lose!";}
+                    return "lose";}
         case "scissors":
             switch(playerSelectionCopy){
                 case "rock":
-                    return "Rock beats Scissors! You won!";
+                    return "won";
                 case "paper":
-                    return "Scissors beats paper! You lose!";
+                    return "lose";
                 case "scissors":
-                    return "Both selected the same, play again.";}
+                    return "tie";}
             
     }
 }
@@ -42,3 +42,28 @@ function computerPlay(){
             return "scissors" ;
     }
 }
+
+
+
+function userSelection(e){
+    humanChoice=e.target.id; 
+    const computerScore= document.querySelector("#computerScore");
+    const humanScore=document.querySelector("#humanScore");
+    matchResult= playRound(humanChoice,computerPlay())
+    switch(matchResult){
+        case "won":
+            humanScore.textContent=Number(humanScore.textContent)+1;
+            return;
+        case "lose":
+            computerScore.textContent=Number(computerScore.textContent)+1;
+            return;
+        case "tie":
+            return;
+    }
+
+}
+
+
+
+const buttons=document.querySelectorAll('.button');
+buttons.forEach(button => button.addEventListener('click', userSelection));

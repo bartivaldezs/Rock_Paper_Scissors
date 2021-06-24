@@ -15,7 +15,7 @@ body{
     justify-content: center;
     
 }
-.button img{
+.button{
     height: 300px;
     width: auto;
     margin: 0 100px 0 100px;
